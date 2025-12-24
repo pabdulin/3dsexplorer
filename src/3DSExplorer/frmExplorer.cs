@@ -56,7 +56,7 @@ namespace _3DSExplorer
         {
             lstInfo.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
-        
+
         public void AddListItem(int offset, int size, string description, ulong value, int group)
         {
             var lvi = new ListViewItem("0x" + offset.ToString("X3"));
@@ -110,7 +110,7 @@ namespace _3DSExplorer
             lvi.Group = lstInfo.Groups[group];
             lstInfo.Items.Add(lvi);
         }
-                
+
         private void lstInfo_DoubleClick(object sender, EventArgs e)
         {
             if (lstInfo.SelectedIndices.Count <= 0) return;
@@ -118,7 +118,7 @@ namespace _3DSExplorer
             Clipboard.SetText(toClip);
             MessageBox.Show("Value copied to clipboard!");
         }
-        
+
         #endregion
 
         private void OpenFile(string path)
@@ -387,7 +387,7 @@ namespace _3DSExplorer
         }
 
         #endregion
-        
+
         private void menuLogo_Click(object sender, EventArgs e)
         {
             (new frmAbout()).ShowDialog();
@@ -427,7 +427,7 @@ namespace _3DSExplorer
             switch (e.Button)
             {
                 case MouseButtons.Right:
-                        
+
                     if (node.Tag != null)
                     {
                         var tags = (TreeViewContextTag[])node.Tag;
@@ -473,9 +473,10 @@ namespace _3DSExplorer
 
         private bool IsNewerAvailable(string newerVersion)
         {
-            var thisVersion = Version.Parse(Application.ProductVersion);
-            var remoteVersion = Version.Parse(newerVersion);
-            return remoteVersion.CompareTo(thisVersion) > 0;
+            // var thisVersion = Version.Parse(Application.ProductVersion);
+            // var remoteVersion = Version.Parse(newerVersion);
+            // return remoteVersion.CompareTo(thisVersion) > 0;
+            return false;
         }
 
         private void bwCheckForUpdates_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

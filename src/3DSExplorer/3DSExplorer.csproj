@@ -11,14 +11,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>full</DebugType>
   </PropertyGroup>
-  <!-- <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <LogicalName>_3DSExplorer.Properties.Resources.resources</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Update="frmExplorer.resx">
-        <LogicalName>_3DSExplorer.frmExplorer.resources</LogicalName>
-    </EmbeddedResource>
-  </ItemGroup> -->
   <ItemGroup>
     <PackageReference Include="System.Resources.Extensions" Version="7.0.0" />
   </ItemGroup>
