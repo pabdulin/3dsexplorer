@@ -21,8 +21,8 @@ namespace _3DSExplorer
         {
             InitializeComponent();
             InitializeForm();
-            if (Properties.Settings.Default.CheckForUpdatesOnStartup)
-                bwCheckForUpdates.RunWorkerAsync();
+            // if (Properties.Settings.Default.CheckForUpdatesOnStartup)
+            //     bwCheckForUpdates.RunWorkerAsync();
         }
 
         public frmExplorer(string path) : this()
@@ -473,10 +473,9 @@ namespace _3DSExplorer
 
         private bool IsNewerAvailable(string newerVersion)
         {
-            // var thisVersion = Version.Parse(Application.ProductVersion);
-            // var remoteVersion = Version.Parse(newerVersion);
-            // return remoteVersion.CompareTo(thisVersion) > 0;
-            return false;
+            var thisVersion = Version.Parse(Application.ProductVersion);
+            var remoteVersion = Version.Parse(newerVersion);
+            return remoteVersion.CompareTo(thisVersion) > 0;
         }
 
         private void bwCheckForUpdates_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
