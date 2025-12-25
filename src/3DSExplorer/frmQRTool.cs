@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using com.google.zxing;
-using com.google.zxing.common;
-using com.google.zxing.qrcode;
-using com.google.zxing.qrcode.decoder;
+using ZXing;
+using ZXing.Common;
+using ZXing.QrCode;
+using ZXing.QrCode.Internal;
 
 namespace _3DSExplorer
 {
@@ -26,7 +27,7 @@ namespace _3DSExplorer
                 var img = Image.FromStream(fileStream);
                 var bmp = new Bitmap(img);
                 fileStream.Close();
-                var binary = new BinaryBitmap(new HybridBinarizer(new RGBLuminanceSource(bmp, bmp.Width, bmp.Height)));
+                var binary = new BinaryBitmap(new HybridBinarizer(new BitmapLuminanceSource(bmp)));
                 var reader = new QRCodeReader();
                 var result = reader.decode(binary);
                 var resultList = (ArrayList)result.ResultMetadata[ResultMetadataType.BYTE_SEGMENTS];
@@ -53,14 +54,14 @@ namespace _3DSExplorer
                 var writer = new QRCodeWriter();
                 const string encoding = "ISO-8859-1";
                 var str = Encoding.GetEncoding(encoding).GetString(byteArray);
-                var hints = new Hashtable { { EncodeHintType.CHARACTER_SET, encoding } };
+                var hints = new Dictionary<EncodeHintType, object> { { EncodeHintType.CHARACTER_SET, encoding } };
                 var matrix = writer.encode(str, BarcodeFormat.QR_CODE, 100, 100, hints);
                 var img = new Bitmap(200, 200);
                 var g = Graphics.FromImage(img);
                 g.Clear(Color.White);
                 for (var y = 0; y < matrix.Height; ++y)
                     for (var x = 0; x < matrix.Width; ++x)
-                        if (matrix.get_Renamed(x, y) != -1)
+                        if (matrix[x, y])
                             g.FillRectangle(Brushes.Black, x * 2, y * 2, 2, 2);
                 ImageBox.ShowDialog(img);
             }
@@ -76,14 +77,14 @@ namespace _3DSExplorer
             {
                 var writer = new QRCodeWriter();
                 const string encoding = "UTF-8";// "ISO-8859-1";
-                var hints = new Hashtable { { EncodeHintType.CHARACTER_SET, encoding }, { EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L } };
+                var hints = new Dictionary<EncodeHintType, object> { { EncodeHintType.CHARACTER_SET, encoding }, { EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L } };
                 var matrix = writer.encode(text, BarcodeFormat.QR_CODE, 100, 100, hints);
                 var img = new Bitmap(200, 200);
                 var g = Graphics.FromImage(img);
                 g.Clear(Color.White);
                 for (var y = 0; y < matrix.Height; ++y)
                     for (var x = 0; x < matrix.Width; ++x)
-                        if (matrix.get_Renamed(x, y) != -1)
+                        if (matrix[x, y])
                             g.FillRectangle(Brushes.Black, x * 2, y * 2, 2, 2);
                 ImageBox.ShowDialog(img);
             }
