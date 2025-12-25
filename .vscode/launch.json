@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch .NET Framework App",
+            "name": "Launch 3DSExplorer",
             "type": "clr",
             "request": "launch",
             "program": "${workspaceFolder}/src/3DSExplorer/bin/Debug/net462/3DSExplorer.exe",
