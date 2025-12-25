@@ -1,11 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
+    <!-- Non-string resources require the property GenerateResourceUsePreserializedResources to be set to true. -->
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-    <UseWindowsForms>true</UseWindowsForms>
+    <!-- Proper namespace for resources to use -->
     <RootNamespace>_3DSExplorer</RootNamespace>
     <OutputType>WinExe</OutputType>
+    <!-- Unsafe code may only appear if compiling with /unsafe -->
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!-- see: https://learn.microsoft.com/en-us/dotnet/standard/assembly/set-attributes-project-file -->
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
