@@ -13,6 +13,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="SharpCompress" Version="0.42.1" />
+    <PackageReference Include="SharpGL" Version="3.1.1" />
+    <PackageReference Include="SharpGL.WinForms" Version="3.1.1" />
     <PackageReference Include="System.Resources.Extensions" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
@@ -28,14 +30,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="SharpGL, Version=1.99.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\SharpGL.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpGL.WinForms, Version=1.99.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\SharpGL.WinForms.dll</HintPath>
-    </Reference>
     <Reference Include="zxing">
       <HintPath>.\zxing.dll</HintPath>
     </Reference>

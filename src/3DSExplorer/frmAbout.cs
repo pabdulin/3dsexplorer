@@ -41,7 +41,7 @@ namespace _3DSExplorer
             gl.End();
         }
 
-        private void openGLControl1_OpenGLDraw(object sender, PaintEventArgs e)
+        private void openGLControl1_OpenGLDraw(object sender, SharpGL.RenderEventArgs e)
         {
             var gl = openGLControl1.OpenGL;
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
@@ -60,12 +60,12 @@ namespace _3DSExplorer
         private void BindBitmapToTexture(OpenGL gl, Bitmap bmp, int textureNumber)
         {
             gl.BindTexture(OpenGL.GL_TEXTURE_2D, _textures[textureNumber]);
-            gl.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, 3, bmp.Width, bmp.Height, 0, 
-                OpenGL.GL_BGR, 
-                OpenGL.GL_UNSIGNED_BYTE, 
+            gl.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, 3, bmp.Width, bmp.Height, 0,
+                OpenGL.GL_BGR,
+                OpenGL.GL_UNSIGNED_BYTE,
                 bmp.LockBits(
-                    new Rectangle(0, 0, bmp.Width, bmp.Height), 
-                    ImageLockMode.ReadOnly, 
+                    new Rectangle(0, 0, bmp.Width, bmp.Height),
+                    ImageLockMode.ReadOnly,
                     PixelFormat.Format24bppRgb
                     ).Scan0
                 );
