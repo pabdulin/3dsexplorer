@@ -4,22 +4,17 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
-            "command": "dotnet",
-            "type": "shell",
-            "args": [
-                "build",
-                "src"
-                // Ask dotnet build to generate full paths for file names.
-                // "/property:GenerateFullPaths=true",
-                // Do not generate summary otherwise it leads to duplicate errors in Problems panel
-                // "/consoleloggerparameters:NoSummary"
-            ],
-            "group": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "type": "process",
+            "command": "build.bat",
+            "args": [],
             "presentation": {
                 "reveal": "silent"
             },
-            "problemMatcher": "$msCompile"
+            "label": "dotnet build 3DSExplorer",
         }
     ]
 }
