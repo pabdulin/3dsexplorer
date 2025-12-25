@@ -116,12 +116,12 @@ namespace _3DSExplorer
             if (string.IsNullOrEmpty(text)) return;
             if (!text.ToLower().StartsWith("http://") || !text.ToLower().Contains("youtu")) return;
             var youtube = new Uri(text);
-            var videoId = HttpUtility.ParseQueryString(youtube.Query)["v"];
+            var videoId = string.Empty; //HttpUtility.ParseQueryString(youtube.Query)["v"];
             if (!string.IsNullOrEmpty(videoId))
             {
                 if (txtYoutube.Text != videoId)
                 {
-                    txtYoutube.Text = videoId;        
+                    txtYoutube.Text = videoId;
                     picThumb.Image = Resources.spinner;
                     Application.DoEvents();
                     _youTube.DownloadThumbnail(videoId);
@@ -196,7 +196,7 @@ namespace _3DSExplorer
             ChangeForm(false);
             _selectedPosition = cmbOrientation.SelectedIndex;
             progressBar.Value = 0;
-            progressBar.Maximum = 300;          
+            progressBar.Maximum = 300;
             if (radSourceYoutube.Checked)
             {
                 if (txtYoutube.Text == string.Empty)
@@ -246,7 +246,7 @@ namespace _3DSExplorer
                 Make2D();
             }
         }
-    
+
 
         private void MakeLeft()
         {
@@ -304,7 +304,7 @@ namespace _3DSExplorer
                     position);
             _ffmpeg.Convert(0, parameters, Path.GetDirectoryName(Application.ExecutablePath) + "\\right.avi");
         }
-        
+
         private void Make2D()
         {
             ChangeStatus("Status: Start making 2D video.");

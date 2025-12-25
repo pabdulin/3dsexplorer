@@ -14,7 +14,7 @@ namespace _3DSExplorer
     class YouTube
     {
         private WebClient _webClient;
-        
+
         public delegate void ProcessFinished(string errorString);
         public delegate void ImageReady(Image image);
 
@@ -68,13 +68,13 @@ namespace _3DSExplorer
                 return;
             }
             var source = new StreamReader(responseStream, Encoding.UTF8).ReadToEnd();
-            
+
             var found = source.IndexOf("x-flv");
             while (!source.Substring(found, 4).Equals("http"))
                 found--;
             source = source.Remove(0, found);
-            source = HttpUtility.UrlDecode(source);
-            source = HttpUtility.UrlDecode(source); //Twice
+            source = string.Empty; // HttpUtility.UrlDecode(source);
+            source = string.Empty; // HttpUtility.UrlDecode(source); //Twice
             _errorMessage = source.Substring(0,source.IndexOf("&quality"));
         }
         /*
