@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using SharpCompress.Archive;
+using SharpCompress.Archives;
 
 namespace _3DSExplorer.Modules
 {
@@ -14,7 +14,7 @@ namespace _3DSExplorer.Modules
 
         private string errorMessage = string.Empty;
         private string _cciName = string.Empty;
-        private uint _crc;
+        private long _crc;
         public CCIContext CCIContext;
 
         public bool Open(Stream fs)
@@ -22,9 +22,9 @@ namespace _3DSExplorer.Modules
             var reader = ArchiveFactory.Open(fs);
 
             foreach (var entry in reader.Entries)
-                if (entry.FilePath.EndsWith(".3ds") || entry.FilePath.EndsWith(".cci") || entry.FilePath.EndsWith(".csu"))
+                if (entry.Key.EndsWith(".3ds") || entry.Key.EndsWith(".cci") || entry.Key.EndsWith(".csu"))
                 {
-                    _cciName = entry.FilePath;
+                    _cciName = entry.Key;
                     _crc = entry.Crc;
                     CCIContext = new CCIContext();
                     var entryStream = entry.OpenEntryStream();
