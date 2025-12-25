@@ -15,9 +15,10 @@ namespace _3DSExplorer.TreeListView
         {
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            CreateHandle();                        
+            CreateHandle();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         internal IColumnsProvider ColumnProvider { get; set; }
 
         internal List<TreeNode> ExposedNodes
@@ -111,7 +112,7 @@ namespace _3DSExplorer.TreeListView
                 catch { }
             }
         }
-        
+
         private void treeView_MouseDown(object sender, MouseEventArgs e)
         {
             TreeNode node = null;
@@ -124,7 +125,7 @@ namespace _3DSExplorer.TreeListView
             if (node != null)
                 SelectedNode = node;
         }
-        
+
         private void treeView_AfterExpand(object sender, TreeViewEventArgs e)
         {
             OnHideOrShowScrollBar();
@@ -144,8 +145,8 @@ namespace _3DSExplorer.TreeListView
 
             if (HideOrShowScrollBar != null)
                 HideOrShowScrollBar.Invoke(this, new HideScrollBarEventArgs() { Hide = hideScrollBar });
-        }               
-        
+        }
+
         private static IEnumerable<T> GetRecursive<T>(T rootElement, IList<T> alreadyFoundElements, Func<T, IList<T>, IEnumerable<T>> findSubElementsFunction)
         {
             var subElements = findSubElementsFunction(rootElement, alreadyFoundElements).ToList();
@@ -153,7 +154,7 @@ namespace _3DSExplorer.TreeListView
             alreadyFoundElements = alreadyFoundElements.Union(subElements).ToList();
             foreach (T subE in subElements)
                 alreadyFoundElements = alreadyFoundElements.Union(GetRecursive(subE, alreadyFoundElements, findSubElementsFunction)).ToList();
-            return alreadyFoundElements;           
+            return alreadyFoundElements;
         }
     }
 }

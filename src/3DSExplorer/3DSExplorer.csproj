@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
     <!-- Non-string resources require the property GenerateResourceUsePreserializedResources to be set to true. -->
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <!-- Proper namespace for resources to use -->
@@ -10,12 +11,13 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <!-- see: https://learn.microsoft.com/en-us/dotnet/standard/assembly/set-attributes-project-file -->
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NoWarn>CA1416;CA2022;SYSLIB0007;SYSLIB0014;SYSLIB0021</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="SharpCompress" Version="0.42.1" />
     <PackageReference Include="SharpGL" Version="3.1.1" />
     <PackageReference Include="SharpGL.WinForms" Version="3.1.1" />
-    <PackageReference Include="System.Resources.Extensions" Version="7.0.0" />
     <PackageReference Include="ZXing.Net" Version="0.16.11" />
+    <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.14" />
   </ItemGroup>
 </Project>

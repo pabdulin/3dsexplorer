@@ -1,28 +1,33 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace _3DSExplorer.Modules
 {
     public partial class ProgressDialog : Form
     {
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Value
         {
             get { return progressBar.Value; }
             set { progressBar.Value = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Maximum
         {
             get { return progressBar.Maximum; }
             set { progressBar.Maximum = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Step
         {
             get { return progressBar.Step; }
             set { progressBar.Step = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Message
         {
             get { return lblMessage.Text; }

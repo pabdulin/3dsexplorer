@@ -19,6 +19,7 @@ namespace _3DSExplorer.TreeListView
 
         public const char ColumnSeperator = '©';
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TreeNode SelectedNode { get { return treeView.SelectedNode; } set { treeView.SelectedNode = value; } }
 
         [MergableProperty(false)]
@@ -27,7 +28,8 @@ namespace _3DSExplorer.TreeListView
         [Localizable(true)]
         public ListView.ColumnHeaderCollection Columns { get { return listView.Columns; } }
         public TreeView TreeView { get { return treeView; } }
-        
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Category("Behavior")]
         public ImageList ImageList { set { treeView.ImageList = value; }  get { return treeView.ImageList; } }
         public int TotalColWidth { get { return Columns.Cast<ColumnHeader>().Sum(col => col.Width); } }
@@ -70,7 +72,7 @@ namespace _3DSExplorer.TreeListView
                 e.Cancel = true;
                 e.NewWidth = ClientSize.Width - (TotalColWidth - Columns[e.ColumnIndex].Width);
             }
-            treeView.Refresh();            
+            treeView.Refresh();
         }
 
         [Category("Action")]

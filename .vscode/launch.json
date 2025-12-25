@@ -6,9 +6,9 @@
     "configurations": [
         {
             "name": "Launch 3DSExplorer",
-            "type": "clr",
+            "type": "coreclr",
             "request": "launch",
-            "program": "${workspaceFolder}/src/3DSExplorer/bin/Debug/net462/3DSExplorer.exe",
+            "program": "${workspaceFolder}/src/3DSExplorer/bin/Debug/net10.0-windows/3DSExplorer.exe",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,

@@ -46,7 +46,7 @@ namespace _3DSExplorer
                 arraystring += array[i].ToString("X2");
             return arraystring;
         }
-        
+
         // ReSharper disable AccessToStaticMemberViaDerivedType
         private void setHashAlgorithm()
         {
@@ -57,7 +57,7 @@ namespace _3DSExplorer
                         {
                             case 0: _ha = SHA256.Create();
                                 break;
-                            case 1: _ha = SHA256Cng.Create();
+                            case 1: _ha = SHA256.Create();
                                 break;
                             case 2: _ha = HMACSHA256.Create();
                                 break;
@@ -69,7 +69,7 @@ namespace _3DSExplorer
                         {
                             case 0: _ha = SHA512.Create();
                                 break;
-                            case 1: _ha = SHA512Cng.Create();
+                            case 1: _ha = SHA512.Create();
                                 break;
                             case 2: _ha = HMACSHA512.Create();
                                 break;
@@ -80,7 +80,7 @@ namespace _3DSExplorer
                         {
                             case 0: _ha = SHA1.Create();
                                 break;
-                            case 1: _ha = SHA1Cng.Create();
+                            case 1: _ha = SHA1.Create();
                                 break;
                             case 2: _ha = HMACSHA1.Create();
                                 break;
@@ -91,7 +91,7 @@ namespace _3DSExplorer
                         {
                             case 0: _ha = MD5.Create();
                                 break;
-                            case 1: _ha = MD5Cng.Create();
+                            case 1: _ha = MD5.Create();
                                 break;
                             case 2: _ha = HMACMD5.Create();
                                 break;
@@ -112,7 +112,7 @@ namespace _3DSExplorer
             try
             {
                 var fs = File.OpenRead(_filePath);
-                
+
                 var blockSize = chkEntireFile.Checked ? fs.Length : Int32.Parse(cbComputeBlockSize.Text);
                 var blocks = chkEntireFile.Checked ? 1 : Int32.Parse(txtBlocks.Text);
 
@@ -132,10 +132,10 @@ namespace _3DSExplorer
                     sb.Append("@" + pos.ToString("X7") + ": " + byteArrayToString(hash) + Environment.NewLine);
                     blocks--;
                     progressBar.PerformStep();
-                } while (readBytes == blockSize && blocks != 0);                    
+                } while (readBytes == blockSize && blocks != 0);
                 // Show results
                 txtList.Text = sb.ToString();
-                
+
                 fs.Close();
             }
             catch (Exception ex)
@@ -271,14 +271,14 @@ namespace _3DSExplorer
                         worker.ReportProgress(11, new ValueObject(offset));
                     }
                     worker.ReportProgress(10, new ValueObject(blockSize));
-                }               
+                }
                 e.Result = "Search key not found.";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void superBruteForce_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -325,11 +325,11 @@ namespace _3DSExplorer
         private void picTool_Click(object sender, EventArgs e)
         {
             txtList.Text = @"Super Brute-Force checks every block size starting from" + Environment.NewLine +
-                @"64 bytes to the size of the file increamented by 4 every iteration." + Environment.NewLine + 
+                @"64 bytes to the size of the file increamented by 4 every iteration." + Environment.NewLine +
                 @"That block is hashed at every offset starting from 0 to the last" + Environment.NewLine +
                 @"possible offset in the file. The operation is very slow..." + Environment.NewLine +
                 @"You could speed it up by checking the High CPU usage but be aware" + Environment.NewLine +
-                @"that your CPU might heat up because of the intense processing." + Environment.NewLine + 
+                @"that your CPU might heat up because of the intense processing." + Environment.NewLine +
                 @"Good luck!...";
         }
 
