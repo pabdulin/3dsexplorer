@@ -95,21 +95,17 @@ namespace _3DSExplorer.TreeListView
             newBounds.Width = e.Node.TreeView.ClientRectangle.Width;
             e.Graphics.FillRectangle(bg, newBounds);
 
-            var texts = e.Node.Text.Split(TreeListViewControl.ColumnSeperator);
+            var texts = e.Node.Text.Split(TreeListViewControl.ColumnSeperator, StringSplitOptions.RemoveEmptyEntries);
             int column = 0;
             float colX = 0;
             float colWidth = 0;
             foreach (var text in texts)
             {
-                try
-                {
-                    float extraSpacing = ((column == 0) ? (float)(e.Bounds.X - e.Node.TreeView.Location.X) : 0f);
-                    colWidth = (column == texts.Length - 1 ? e.Node.TreeView.Width : ColumnProvider.Columns[column].Width);
-                    e.Graphics.DrawString(text, e.Node.TreeView.Font, fg, new RectangleF(colX + extraSpacing, e.Bounds.Y + 1, colWidth - extraSpacing, e.Bounds.Height - 2));
-                    colX += ColumnProvider.Columns[column].Width;
-                    column++;
-                }
-                catch { }
+                float extraSpacing = ((column == 0) ? (float)(e.Bounds.X - e.Node.TreeView.Location.X) : 0f);
+                colWidth = (column == texts.Length - 1 ? e.Node.TreeView.Width : ColumnProvider.Columns[column].Width);
+                e.Graphics.DrawString(text, e.Node.TreeView.Font, fg, new RectangleF(colX + extraSpacing, e.Bounds.Y + 1, colWidth - extraSpacing, e.Bounds.Height - 2));
+                colX += ColumnProvider.Columns[column].Width;
+                column++;
             }
         }
 

@@ -5,6 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "preLaunchTask": "Build 3DSExplorer",
             "name": "Launch 3DSExplorer",
             "type": "coreclr",
             "request": "launch",
